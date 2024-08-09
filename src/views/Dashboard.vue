@@ -2,16 +2,38 @@
 import Stopwatch from "@/components/Stopwatch.vue";
 import { ref } from "vue";
 
-const timers = ref(0);
+const timers = ref([]);
+const color = ref("bg-blue-300");
 
 function addTimer() {
-  timers.value += 1;
+  timers.value.push({ isVisible: true, color: "bg-blue-300" });
 }
+
+const remove = (index) => {
+  timers.value[index].isVisible = false;
+};
 </script>
 
 <template>
   <div class="flex flex-wrap">
-    <Stopwatch v-for="(timer, index) in timers" class="w-4" :key="index" />
+    <template v-for="(timer, index) in timers">
+      <Stopwatch
+        class="w-4 stopwatch"
+        :key="index"
+        v-if="timer.isVisible"
+        :color="timer.color"
+      >
+        <template v-slot:buttons>
+          <Button
+            size="small"
+            outlined
+            @click="remove(index)"
+            icon="pi pi-times"
+          ></Button>
+          
+        </template>
+      </Stopwatch>
+    </template>
   </div>
   <Button @click="addTimer" label="Add" class="m-2"></Button>
 </template>

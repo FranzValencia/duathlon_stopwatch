@@ -1,12 +1,16 @@
 <script setup>
-import { ref, computed } from "vue";
+import { ref, computed, defineProps } from "vue";
+
+const props = defineProps(["color"]);
 
 const time = ref(0);
 const timer = ref(null);
 
 const start = () => {
   if (timer.value) return;
-  11``
+  timer.value = setInterval(() => {
+    time.value += 1;
+  }, 1000);
 };
 
 const stop = () => {
@@ -38,8 +42,9 @@ const formattedTime = computed(() => {
 
 <template>
   <div
-    class="p-2 bg-green-400 justify-content-center border-dashed"
-    style="/*width: 380px;*/ font-family: 'Arial Narrow'"
+    class="p-2 justify-content-center border-dashed"
+    :class="color"
+    style="font-family: 'Arial Narrow'"
   >
     <h1 class="m-0 flex justify-content-center" contenteditable="true"></h1>
     <h1
@@ -53,6 +58,7 @@ const formattedTime = computed(() => {
       <Button size="small" outlined @click="start">Start</Button>
       <Button size="small" outlined @click="stop">Stop</Button>
       <Button size="small" outlined @click="reset">Reset</Button>
+      <slot name="buttons"></slot>
     </div>
   </div>
 </template>
