@@ -1,5 +1,10 @@
 <script setup>
 import { ref, computed, defineProps } from "vue";
+import { useConfirm } from "primevue/useconfirm";
+import { useToast } from "primevue/usetoast";
+
+const confirm = useConfirm();
+const toast = useToast();
 
 const props = defineProps(["color"]);
 
@@ -38,6 +43,40 @@ const formattedTime = computed(() => {
   const seconds = (time.value % 60).toString().padStart(2, "0");
   return `${hours}:${minutes}:${seconds}`;
 });
+
+const confirm2 = (event) => {
+  confirm.require({
+    target: event.currentTarget,
+    message: "Do you want to reset this timer?",
+    icon: "pi pi-info-circle",
+    rejectProps: {
+      label: "Cancel",
+      severity: "secondary",
+      outlined: true,
+    },
+    acceptProps: {
+      label: "Reset",
+      severity: "warn",
+    },
+    accept: () => {
+      reset();
+      toast.add({
+        severity: "info",
+        summary: "Confirmed",
+        detail: "Timer reseted",
+        life: 3000,
+      });
+    },
+    // reject: () => {
+    //   toast.add({
+    //     severity: "error",
+    //     summary: "Rejected",
+    //     detail: "You have rejected",
+    //     life: 3000,
+    //   });
+    // },
+  });
+};
 </script>
 
 <template>
@@ -46,7 +85,8 @@ const formattedTime = computed(() => {
     :class="color"
     style="font-family: 'Arial Narrow'"
   >
-    <h1 class="m-0 flex justify-content-center" contenteditable="true"></h1>
+    <slot name="palete"></slot>
+    <slot name="title"></slot>
     <h1
       id="stopwatch"
       class="w-full flex justify-content-center m-0"
@@ -55,10 +95,36 @@ const formattedTime = computed(() => {
       {{ formattedTime }}
     </h1>
     <div class="flex gap-1 justify-content-center">
-      <Button size="small" outlined @click="start">Start</Button>
-      <Button size="small" outlined @click="stop">Stop</Button>
-      <Button size="small" outlined @click="reset">Reset</Button>
+      <Button
+        class="ctrls"
+        size="small"
+        outlined
+        @click="start"
+        label="Start"
+        icon="pi pi-play"
+      ></Button>
+      <Button
+        class="ctrls"
+        size="small"
+        outlined
+        @click="stop"
+        label="Stop"
+        icon="pi pi-pause"
+      ></Button>
+      <Button
+        class="ctrls"
+        @click="confirm2($event)"
+        label="Reset"
+        icon="pi pi-undo"
+        outlined
+      ></Button>
       <slot name="buttons"></slot>
     </div>
   </div>
 </template>
+<style>
+.ctrls {
+  border: none !important;
+  color: aliceblue;
+}
+</style>
