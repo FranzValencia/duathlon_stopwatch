@@ -10,7 +10,7 @@ const toast = useToast();
 const timers = ref([]);
 const color = ref(null);
 const title = ref(null);
-const fontColor= ref("text-yellow-400")
+const fontColor = ref("text-yellow-400");
 
 const colors = ref([
   { name: "---", code: "bg-black-alpha-90" },
@@ -100,9 +100,9 @@ const confirm2 = (event, index) => {
           <text
             class="m-0 p-0 flex justify-content-center text-center text-yellow-400"
             contenteditable="true"
-            style="font-family: 'queer' !important; font-size: 25px;"
+            style="font-family: 'queer' !important; font-size: 25px"
           >
-            5km Run Above 35yold Men&Women
+            5km Run Above 35yold Men & Women
           </text>
         </template>
         <template v-slot:buttons>
@@ -118,11 +118,11 @@ const confirm2 = (event, index) => {
   </div>
 
   <Button
-    class="m-2"
+    class="m-0 p-0 w-full"
     @click="addTimer"
     label="Add Timer"
     icon="pi pi-plus"
-    size="large"
+    text
   ></Button>
 
   <Toast />
