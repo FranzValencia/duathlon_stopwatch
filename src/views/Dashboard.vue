@@ -10,8 +10,10 @@ const toast = useToast();
 const timers = ref([]);
 const color = ref(null);
 const title = ref(null);
+const fontColor= ref("text-yellow-400")
 
 const colors = ref([
+  { name: "---", code: "bg-black-alpha-90" },
   { name: "C1", code: "bg-blue-500" },
   { name: "C2", code: "bg-blue-300" },
   { name: "C3", code: "bg-red-500" },
@@ -70,6 +72,7 @@ const confirm2 = (event, index) => {
 </script>
 
 <template>
+  <div class="w-full bg-green-700" style="height: 400px"></div>
   <div class="flex flex-wrap">
     <template v-for="(timer, index) in timers">
       <Stopwatch
@@ -94,10 +97,13 @@ const confirm2 = (event, index) => {
           />
         </template>
         <template v-slot:title>
-          <h1
-            class="m-0 flex justify-content-center"
+          <text
+            class="m-0 p-0 flex justify-content-center text-center text-yellow-400"
             contenteditable="true"
-          ></h1>
+            style="font-family: 'queer' !important; font-size: 25px;"
+          >
+            5km Run Above 35yold Men&Women
+          </text>
         </template>
         <template v-slot:buttons>
           <Button
@@ -110,8 +116,14 @@ const confirm2 = (event, index) => {
       </Stopwatch>
     </template>
   </div>
-  
-  <Button class="m-2" @click="addTimer" label="Add Timer" icon="pi pi-plus" size="large"></Button>
+
+  <Button
+    class="m-2"
+    @click="addTimer"
+    label="Add Timer"
+    icon="pi pi-plus"
+    size="large"
+  ></Button>
 
   <Toast />
   <ConfirmPopup></ConfirmPopup>

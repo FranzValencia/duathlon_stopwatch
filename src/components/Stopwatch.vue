@@ -81,19 +81,19 @@ const confirm2 = (event) => {
 
 <template>
   <div
-    class="p-2 justify-content-center border-dashed"
+    class="p-0 justify-content-center border-dashed"
     :class="color"
     style="font-family: 'Arial Narrow'"
   >
     <slot name="palete"></slot>
     <slot name="title"></slot>
-    <h1
+    <h5
       id="stopwatch"
-      class="w-full flex justify-content-center m-0"
-      style="font-size: 100px"
+      class="w-full flex justify-content-center m-0 p-0 text-yellow-500"
+      style="font-family: 'advanced_dot_digital-7' !important; font-size: 45px;"
     >
       {{ formattedTime }}
-    </h1>
+    </h5>
     <div class="flex gap-1 justify-content-center">
       <Button
         class="ctrls"

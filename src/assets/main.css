@@ -7,6 +7,16 @@
   src: url('@/assets/fonts/proximanova_light.otf');
 }
 
+@font-face {
+  font-family:'advanced_dot_digital-7';
+  src: url('@/assets/fonts/advanced_dot_digital-7.ttf');
+}
+
+@font-face {
+  font-family:'queer';
+  src: url('@/assets/fonts/QUEER___.TTF');
+}
+
 body {
   font-family: 'proximanova_light' !important;
 }

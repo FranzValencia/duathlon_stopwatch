@@ -4,6 +4,8 @@ import AppBar from "./components/AppBar.vue";
 </script>
 
 <template>
-  <!-- <AppBar /> -->
-  <RouterView />
+  <div class="bg-green-500">
+    <!-- <AppBar /> -->
+    <RouterView />
+  </div>
 </template>
