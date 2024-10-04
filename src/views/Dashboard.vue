@@ -8,6 +8,12 @@ const confirm = useConfirm();
 const toast = useToast();
 
 const timers = ref([]);
+
+const testSimStart = () => {
+  console.log($refs);
+  // window.app.$refs.stopwatch1.start();
+};
+
 const color = ref(null);
 const title = ref(null);
 const fontColor = ref("text-yellow-400");
@@ -18,6 +24,13 @@ const colors = ref([
   { name: "C2", code: "bg-blue-300" },
   { name: "C3", code: "bg-red-500" },
   { name: "C4", code: "bg-red-300" },
+]);
+
+const categories = ref([
+  { label: "35 Yrold and Above Men", color: "orange", icon: "pi pi-mars" },
+  { label: "34 Yrold and Below  Men", color: "blue", icon: "pi pi-mars" },
+  { label: "35 Yrold and Above Women", color: "orange", icon: "pi pi-venus" },
+  { label: "34 Yrold and Below  Women", color: "blue", icon: "pi pi-venus" },
 ]);
 
 function addTimer() {
@@ -78,17 +91,18 @@ const confirm2 = (event, index) => {
     srcset=""
     style="width: 100%; position: fixed; z-index: -1"
   />
-  <div class="w-full" style="height: 200px"></div>
+  <div class="w-full" style="height: 280px"></div>
   <div class="flex flex-wrap">
     <template v-for="(timer, index) in timers">
       <Stopwatch
+        :ref="`stopwatch${index}`"
         class="w-6 stopwatch"
         :key="index"
         v-if="timer.isVisible"
         :color="timers[index].color"
       >
         <template v-slot:palete>
-          <Select
+          <!-- <Select
             style="border: none; width: 100px"
             v-model="color"
             @change="setColor(index)"
@@ -100,19 +114,23 @@ const confirm2 = (event, index) => {
             size="small"
             :class="timer.color"
             class="m-1"
-          />
+          /> -->
         </template>
         <template v-slot:title>
           <text
             class="m-0 p-0 flex justify-content-center text-center -text-white -text-yellow-400"
             contenteditable="true"
             style="
+              -font-family: 'calibri' !important;
               font-family: 'queer' !important;
-              font-size: 25px;
-              color: #f9ff00;
+              font-size: 35px;
+              _color: #f9ff00;
+              color: white;
             "
+            :style="'background-color: ' + categories[index].color"
           >
-            5km Run Above 35yold Men & Women
+            <span class="uppercase">{{ categories[index].label }}</span>
+        
           </text>
         </template>
         <template v-slot:buttons>
@@ -120,6 +138,12 @@ const confirm2 = (event, index) => {
             class="ctrls"
             @click="confirm2($event, index)"
             icon="pi pi-times"
+            outlined
+          ></Button>
+          <Button
+            class="ctrls"
+            @click="testSimStart()"
+            label="Test"
             outlined
           ></Button>
         </template>
