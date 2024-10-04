@@ -89,8 +89,8 @@ const confirm2 = (event) => {
     <slot name="title"></slot>
     <h5
       id="stopwatch"
-      class="w-full flex justify-content-center m-0 p-0 text-yellow-500"
-      style="font-family: 'advanced_dot_digital-7' !important; font-size: 45px;"
+      class="w-full flex justify-content-center m-0 p-0 -text-white -text-yellow-500"
+      style="font-family: 'advanced_dot_digital-7' !important; font-size: 45px; color: #f9ff00;"
     >
       {{ formattedTime }}
     </h5>
@@ -116,6 +116,13 @@ const confirm2 = (event) => {
         @click="confirm2($event)"
         label="Reset"
         icon="pi pi-undo"
+        outlined
+      ></Button>
+      <Button
+        class="ctrls"
+        @click="confirm2($event)"
+        label="Split"
+        icon="pi pi-flag-fill"
         outlined
       ></Button>
       <slot name="buttons"></slot>

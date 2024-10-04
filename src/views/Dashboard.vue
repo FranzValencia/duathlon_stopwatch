@@ -13,7 +13,7 @@ const title = ref(null);
 const fontColor = ref("text-yellow-400");
 
 const colors = ref([
-  { name: "---", code: "bg-black-alpha-90" },
+  { name: "---", code: "surface-900" },
   { name: "C1", code: "bg-blue-500" },
   { name: "C2", code: "bg-blue-300" },
   { name: "C3", code: "bg-red-500" },
@@ -72,11 +72,17 @@ const confirm2 = (event, index) => {
 </script>
 
 <template>
-  <div class="w-full bg-green-700" style="height: 400px"></div>
+  <img
+    src="/header.png"
+    alt=""
+    srcset=""
+    style="width: 100%; position: fixed; z-index: -1"
+  />
+  <div class="w-full" style="height: 200px"></div>
   <div class="flex flex-wrap">
     <template v-for="(timer, index) in timers">
       <Stopwatch
-        class="w-4 stopwatch"
+        class="w-6 stopwatch"
         :key="index"
         v-if="timer.isVisible"
         :color="timers[index].color"
@@ -98,9 +104,13 @@ const confirm2 = (event, index) => {
         </template>
         <template v-slot:title>
           <text
-            class="m-0 p-0 flex justify-content-center text-center text-yellow-400"
+            class="m-0 p-0 flex justify-content-center text-center -text-white -text-yellow-400"
             contenteditable="true"
-            style="font-family: 'queer' !important; font-size: 25px"
+            style="
+              font-family: 'queer' !important;
+              font-size: 25px;
+              color: #f9ff00;
+            "
           >
             5km Run Above 35yold Men & Women
           </text>
@@ -118,7 +128,7 @@ const confirm2 = (event, index) => {
   </div>
 
   <Button
-    class="m-0 p-0 w-full"
+    class="m-0 p-2 w-full"
     @click="addTimer"
     label="Add Timer"
     icon="pi pi-plus"

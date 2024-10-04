@@ -3,6 +3,11 @@
 @import "primeicons/primeicons.css";
 
 @font-face {
+  font-family:'oldtimer';
+  src: url('@/assets/fonts/Oldtimer.ttf');
+}
+
+@font-face {
   font-family:'proximanova_light';
   src: url('@/assets/fonts/proximanova_light.otf');
 }
